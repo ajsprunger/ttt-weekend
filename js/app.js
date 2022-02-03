@@ -49,6 +49,7 @@ function render(){
     return winner === 1 ? message.textContent = "Player 1 wins!"
     : winner === -1 ? message.textContent = "Player 2 wins!"
     : winner === 'T' ? message.textContent = "Tie game!"
+    : message.textContent = `It's ${playerTurn}'s turn.`
   }
 }
 
@@ -56,7 +57,9 @@ function render(){
 
 
 
-init()
 
 
 
+function playerTurn(turn) {
+  return (turn === -1 ? "Player 2" : "Player 1")
+}
