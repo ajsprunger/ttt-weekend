@@ -82,8 +82,8 @@ function clickHandler() {
     gameBoard[(parseInt(square.target.id))] = turn
     }
     getWinner()
-    render()
     changeTurn()
+    render()
 
   })
 }
@@ -91,7 +91,7 @@ function clickHandler() {
 
 
 
-function playerTurn(turn) {
+function playerTurn() {
   return (turn === -1 ? "Player 2" : "Player 1")
 }
 
@@ -107,7 +107,7 @@ function getWinner() {
   {
     winner = turn
     confetti.start(4000)
-  } if (gameBoard.every(x => Math.abs(x) === 1)){
+  } else if (gameBoard.every(x => Math.abs(x) === 1)){
     winner = 'T'
   }
     
