@@ -106,6 +106,7 @@ function getWinner() {
   Math.abs(gameBoard[2] + gameBoard[4] + gameBoard[6]) === 3 )
   {
     winner = turn
+    confetti.start(4000)
   } if (gameBoard.every(x => Math.abs(x) === 1)){
     winner = 'T'
   }
