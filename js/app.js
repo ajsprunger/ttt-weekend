@@ -68,14 +68,16 @@ function render(){
 
 function clickHandler() {
   board.addEventListener('click', function(square){
-    if (Math.abs(gameBoard[(parseInt(square.target.id))]) === 1){
+    if (Math.abs(gameBoard[(parseInt(square.target.id))]) === 1
+    || winner !== null){
       return
     } else {
     gameBoard[(parseInt(square.target.id))] = turn
-    console.log(gameBoard)
     }
+    getWinner()
     render()
     changeTurn()
+
   })
 }
 
@@ -87,12 +89,20 @@ function playerTurn(turn) {
 }
 
 function getWinner() {
-  const reducer = (prev, curr) => prev + curr
-  winningCombos.forEach((elem) => {
-    elem.forEach((idx) => {
-      console.log(idx)
-    })
-  })
+  if (Math.abs(gameBoard[0] + gameBoard[1] + gameBoard[2]) === 3 ||
+  Math.abs(gameBoard[3] + gameBoard[4] + gameBoard[5]) === 3 ||
+  Math.abs(gameBoard[6] + gameBoard[7] + gameBoard[8]) === 3 ||
+  Math.abs(gameBoard[0] + gameBoard[3] + gameBoard[6]) === 3 ||
+  Math.abs(gameBoard[1] + gameBoard[4] + gameBoard[7]) === 3 ||
+  Math.abs(gameBoard[2] + gameBoard[5] + gameBoard[8]) === 3 ||
+  Math.abs(gameBoard[0] + gameBoard[4] + gameBoard[8]) === 3 ||
+  Math.abs(gameBoard[2] + gameBoard[4] + gameBoard[6]) === 3 )
+  {
+    winner = turn
+  } if (gameBoard.every(x => Math.abs(x) === 1)){
+    winner = 'T'
+  }
+    
 }
 
 
@@ -107,4 +117,4 @@ function changeTurn() {
   turn = turn * -1
 }
 
-getWinner()
+
