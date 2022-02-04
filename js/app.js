@@ -37,7 +37,9 @@ const squaresArr = [sq0, sq1, sq2, sq3, sq4, sq5, sq6, sq7, sq8]
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-
+resetBtn.addEventListener('click', function(){
+  init()
+})
 
 
 
@@ -51,6 +53,7 @@ function init(){
   turn = 1
   winner = null
   message.textContent = ''
+  resetBtn.setAttribute('hidden', true)
   render()
 }
 
@@ -60,10 +63,14 @@ function render(){
       squaresArr[i].innerText = "X"
     } else if (gameBoard[i] === -1) {
       squaresArr[i].innerText ="O"
-    } 
+    } else {
+      squaresArr[i].innerText = ""
+    }
   }
   isWinner()
-
+  if (gameBoard.some(x => Math.abs(x) === 1)){
+    resetBtn.hidden = false
+  }
 }
 
 function clickHandler() {
