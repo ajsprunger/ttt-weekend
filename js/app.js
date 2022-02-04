@@ -32,29 +32,30 @@ const squaresArr = [sq0, sq1, sq2, sq3, sq4, sq5, sq6, sq7, sq8]
 
 
 /*-------------------------------- Functions --------------------------------*/
+init()
+
 
 function init(){
   gameBoard = [null, null, null, null, null, null, null, null, null]
   turn = 1
   winner = null
-  render()
   message.textContent = ''
+  render()
+
 }
 
 function render(){
-  gameBoard.forEach(square => {
-    
-  });
-  function isWinner(winner) {
-    return winner === 1 ? message.textContent = "Player 1 wins!"
-    : winner === -1 ? message.textContent = "Player 2 wins!"
-    : winner === 'T' ? message.textContent = "Tie game!"
-    : message.textContent = `It's ${playerTurn}'s turn.`
+  for (let i = 0; i < gameBoard.length; i++) {
+    if (gameBoard[i] === 1){
+      squaresArr[i].innerText = "X"
+    } else if (gameBoard[i] === -1) {
+      squaresArr[i].innerText ="O"
+    } 
   }
+    
+
+  isWinner()
 }
-
-
-
 
 
 
@@ -63,3 +64,11 @@ function render(){
 function playerTurn(turn) {
   return (turn === -1 ? "Player 2" : "Player 1")
 }
+
+function isWinner() {
+  return winner === 1 ? message.textContent = "Player 1 wins!"
+  : winner === -1 ? message.textContent = "Player 2 wins!"
+  : winner === 'T' ? message.textContent = "Tie game!"
+  : message.textContent = `It's ${playerTurn()}'s turn.`
+}
+
